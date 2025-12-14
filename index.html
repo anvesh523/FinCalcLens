@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>FinCalcLens — Smart Financial Calculators</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="brand" id="homeBtn" style="cursor:pointer">
+                <img src="assets/logo.jpg" class="logo" alt="FCL">
+                <div>
+                    <h1>FinCalcLens</h1>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main">
+            <div class="topbar">
+                <div class="title">FinCalcLens — Calculators</div>
+                <div class="search">
+                    <input id="searchBoxSide" placeholder="Search calculators..." />
+                </div>
+            </div>
+
+            <!-- Category Tabs -->
+            <div id="categoryArea">
+                <div class="tabs" id="categoryTabs"></div>
+                <div id="subCategoryGrid" class="cards" style="margin-top:12px"></div>
+            </div>
+
+            <!-- Calculator view (hidden until a calculator is opened) -->
+            <div id="calculatorView" class="calculator-view">
+                <!-- content injected here by JS -->
+            </div>
+
+            <footer>Made with ❤️ — FinCalcLens</footer>
+        </main>
+    </div>
+
+    <script src="js/app.js" defer></script>
+</body>
+
+</html>
