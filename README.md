@@ -51,10 +51,73 @@ FinCalcLens is a comprehensive suite of financial calculators designed to help y
 
 ## Technologies Used
 
--   **HTML5 & CSS3:** For structure and styling.
--   **JavaScript (ES6+):** Core logic and DOM manipulation.
--   **Chart.js:** For visualizing data (where applicable).
--   **Feather Icons:** for lightweight and clean iconography.
+-   **HTML5 & CSS3:** For a responsive, modern UI with a dark theme.
+-   **JavaScript (ES6+):** Core application logic, form handling, and calculation engines.
+-   **[Chart.js](https://www.chartjs.org/) (v4.4.1):** Used for interactive data visualization and result analysis.
+-   **[Feather Icons](https://feathericons.com/):** For clean, consistent iconography throughout the app.
+
+## Project Structure
+
+```text
+FinCalcLens/
+├── assets/             # Images, logos, and static assets
+├── css/
+│   └── styles.css      # Core application styling and theme
+├── js/
+│   └── app.js          # Calculator definitions and app logic
+├── index.html          # Application entry point
+└── README.md           # Documentation
+```
+
+- **index.html**: The main layout, sidebar, and container for the dynamic calculator views.
+- **css/styles.css**: Contains the design system, including CSS variables for the color palette and layout components.
+- **js/app.js**: The heart of the application. It contains the `CALCULATORS` array and the rendering/calculation engine.
+
+## Developer Guide
+
+### Making Changes
+To modify the application's appearance or behavior:
+1. **Styling**: Update `css/styles.css` for global styles or specific component classes.
+2. **Logic**: Core app behavior (like search or tab switching) is handled in the bottom half of `js/app.js`.
+
+### Adding a New Calculator
+Calculators are defined as objects within the `CALCULATORS` array in `js/app.js`. To add a new one, follow this schema:
+
+```javascript
+{
+    id: 'unique_id',
+    title: 'Display Title',
+    category: 'Category Name', // e.g., 'Investments', 'Loans'
+    description: 'Brief explanation of what it does.',
+    formula: 'Formula to display to the user.',
+    inputs: [
+        { 
+            id: 'input_name', 
+            label: 'Field Label', 
+            type: 'number', // or 'select'
+            placeholder: 'e.g. 5000', 
+            default: 1000 
+        }
+    ],
+    calculate: (data) => {
+        // 'data' contains values from the inputs
+        const value = Number(data.input_name);
+        const result = value * 1.1; // Your logic
+        
+        return {
+            total: result,
+            steps: `Step-by-step logic description for the user.`
+        };
+    }
+}
+```
+
+#### Return Object Schema
+The `calculate` function should return an object that `displayResult` can interpret. Common keys include:
+- `fv`, `maturity`, `total`, `emi`: Main numeric results (formatted as currency).
+- `interest`, `savings`: Secondary numeric results.
+- `steps`: String describing the calculation process.
+- `cagr`, `roi`: Percentage values.
 
 ## License
 
