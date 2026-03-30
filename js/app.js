@@ -935,6 +935,21 @@ function openCalculator(id) {
     // Calculate handler — uses existing calc.calculate()
     calcBtn.addEventListener('click', () => {
         const data = {}; new FormData(form).forEach((v, k) => data[k] = v);
+
+        // Validation: check if any non-optional numeric input is empty
+        const numInputs = Array.from(form.querySelectorAll('input[type="number"]'));
+        const missingRequired = numInputs.some(inp => {
+            const isOptional = inp.placeholder.toLowerCase().includes('optional');
+            return !isOptional && inp.value.trim() === '';
+        });
+
+        if (missingRequired) {
+            q('#resultContent').innerHTML = `<div style="color:var(--danger)">Input parameters required.</div>`;
+            q('#chartContainer').style.display = 'none';
+            if (window.currentChart) { window.currentChart.destroy(); window.currentChart = null; }
+            return;
+        }
+
         try {
             const out = calc.calculate(data);
             displayResult(out, calc);
@@ -942,7 +957,9 @@ function openCalculator(id) {
     });
 
     resetBtn.addEventListener('click', () => {
-        form.reset(); q('#resultContent').textContent = 'Enter values & click Calculate'; q('#stepsBox').textContent = '-'; q('#chartContainer').style.display = 'none'; if (window.currentChart) { window.currentChart.destroy(); window.currentChart = null; }
+        form.querySelectorAll('input').forEach(inp => inp.value = '');
+        form.querySelectorAll('select').forEach(sel => sel.selectedIndex = 0);
+        q('#resultContent').textContent = 'Enter values & click Calculate'; q('#stepsBox').textContent = '-'; q('#chartContainer').style.display = 'none'; if (window.currentChart) { window.currentChart.destroy(); window.currentChart = null; }
     });
 }
 
