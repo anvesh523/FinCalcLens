@@ -63,16 +63,33 @@ body {
 .app {
   display: block;
   padding: 26px;
-  min-height: 100vh
+  min-height: 100vh;
+  overflow-x: clip
 }
 
 .search input {
-  width: 100%;
-  padding: 10px;
-  border-radius: var(--radius);
+  width: auto;
+  min-width: 220px;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 8px;
   border: 1px solid var(--border);
   background: var(--color-surface-3);
-  color: var(--text)
+  color: var(--text);
+  transition: var(--transition)
+}
+
+.search input:focus {
+  background: var(--card);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--color-primary-tint);
+  outline: none
+}
+
+.search input::placeholder {
+  color: var(--muted);
+  font-weight: 400
 }
 
 /* Main */
@@ -86,23 +103,35 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 12px
+  gap: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  padding: 12px 24px;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  margin: 0 -26px
 }
 
 .title {
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 700;
   color: var(--text);
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  user-select: none
+  gap: 8px;
+  user-select: none;
+  transition: var(--transition)
+}
+
+.title:hover {
+  color: var(--accent)
 }
 
 .logo {
-  width: 28px;
-  height: 28px;
-  border-radius: 6px;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
   object-fit: cover
 }
 
