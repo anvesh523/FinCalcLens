@@ -1159,7 +1159,7 @@ function varColor() { return '#1A1A1A'; }
 function init() { renderCategoryTabs(); selectCategory('All'); if (window.feather) feather.replace(); }
 init();
 
-// Hook: search in sidebar
+// Hook: search filter
 searchSide.addEventListener('input', e => {
     const q = e.target.value.trim().toLowerCase();
     // filter cards
