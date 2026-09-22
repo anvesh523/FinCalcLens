@@ -882,7 +882,6 @@ function openCalculator(id) {
       <button id="backBtn" class="back"><i data-feather="chevron-left"></i> Back</button>
       <h2 style="margin:0">${calc.title}</h2>
     </div>
-    <div style="color:var(--muted)">${calc.category}</div>
   </div>
   <div class="calc-wrap">
     <div>
