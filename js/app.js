@@ -1021,7 +1021,7 @@ function displayResult(out, calc) {
             const ret = (out.fv || out.maturity || out.tot) - inv;
             labels = ['Invested', 'Returns'];
             data = [Math.round(inv), Math.round(ret)];
-            colors = ['#64748b', '#a78bfa'];
+            colors = ['#64748b', '#4F46E5'];
         } else if (calc.id === 'simple' || calc.id === 'compound') {
             // Simple/Compound Interest
             // Formula inputs are p (principal). Result is A (amount) or total.
@@ -1031,12 +1031,12 @@ function displayResult(out, calc) {
                 const p = out.total - out.si;
                 labels = ['Principal', 'Interest'];
                 data = [Math.round(p), Math.round(out.si)];
-                colors = ['#64748b', '#a78bfa'];
+                colors = ['#64748b', '#4F46E5'];
             } else if (out.A && out.ci) { // Compound
                 const p = out.A - out.ci;
                 labels = ['Principal', 'Interest'];
                 data = [Math.round(p), Math.round(out.ci)];
-                colors = ['#64748b', '#a78bfa'];
+                colors = ['#64748b', '#4F46E5'];
             }
         } else if (calc.id === 'stock_return' && out.total && out.interest) {
             const net = out.total; // Sell - Tax
@@ -1046,14 +1046,14 @@ function displayResult(out, calc) {
             const buy = net - profit;
             labels = ['Invested', 'Net Profit'];
             data = [Math.round(buy), Math.round(profit)];
-            colors = ['#64748b', '#10b981']; // Green for profit
+            colors = ['#64748b', '#059669']; // Green for profit
         } else if (out.maturity && out.interest) {
             // Generic fallback for others like FD/SSY
             const ret = out.interest;
             const inv = out.maturity - out.interest;
             labels = ['Invested', 'Returns'];
             data = [Math.round(inv), Math.round(ret)];
-            colors = ['#64748b', '#a78bfa'];
+            colors = ['#64748b', '#4F46E5'];
         }
     }
     // 2. Loans Strategy (Principal vs Interest)
@@ -1062,7 +1062,7 @@ function displayResult(out, calc) {
             const p = out.total - out.interest;
             labels = ['Principal', 'Interest'];
             data = [Math.round(p), Math.round(out.interest)];
-            colors = ['#64748b', '#ef4444']; // Red for interest
+            colors = ['#64748b', '#E11D48']; // Red for interest
         }
     }
     // 3. Tax Strategy (Net vs Tax)
@@ -1095,7 +1095,7 @@ function displayResult(out, calc) {
                 const base = out.total - tax;
                 labels = [calc.id === 'tds' ? 'Net Amount' : 'Base Amount', 'Tax/GST'];
                 data = [Math.round(base), Math.round(tax)];
-                colors = ['#64748b', '#f59e0b']; // Orange for tax
+                colors = ['#64748b', '#D97706']; // Orange for tax
             }
         }
     }
@@ -1129,7 +1129,7 @@ function drawChart(labels, data, colors) {
             datasets: [{
                 data: data,
                 backgroundColor: colors,
-                borderColor: '#0f172a',
+                borderColor: '#FAFAF7',
                 borderWidth: 2
             }]
         },
@@ -1153,7 +1153,7 @@ function drawChart(labels, data, colors) {
     });
 }
 
-function varColor() { return '#e2e8f0'; }
+function varColor() { return '#1A1A1A'; }
 
 // Initial render: tabs and grid
 function init() { renderCategoryTabs(); selectCategory('All'); if (window.feather) feather.replace(); }

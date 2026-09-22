@@ -1,16 +1,46 @@
 :root {
-  --bg: #0f172a;
-  --card: #1e293b;
-  --glass: rgba(255, 255, 255, 0.04);
-  --glass-2: rgba(255, 255, 255, 0.02);
-  --muted: #94a3b8;
-  --text: #e2e8f0;
-  --accent: #8b5cf6;
-  --accent-2: #a78bfa;
-  --radius: 14px;
+  /* ── Surfaces (light, 5-tier) ── */
+  --bg: #FAFAF7;
+  --card: #FFFFFF;
+  --glass: #F7F6F2;
+  --color-surface-3: #F0EFEA;
+  --color-surface-4: #E8E7E1;
+
+  /* ── Text ── */
+  --text: #1A1A1A;
+  --muted: #6B7280;
+  --color-text-quiet: #9CA3AF;
+
+  /* ── Borders ── */
+  --color-border: #E5E7EB;
+  --border: #E5E7EB;
+
+  /* ── Brand / semantic ── */
+  --accent: #4F46E5;
+  --accent-2: #6366F1;
+  --danger: #E11D48;
+  --color-success: #059669;
+  --color-warn: #D97706;
+
+  /* ── Primary tints ── */
+  --color-primary-tint: rgba(79, 70, 229, 0.08);
+  --color-primary-border: rgba(79, 70, 229, 0.20);
+
+  /* ── Layout ── */
+  --radius-sm: 8px;
+  --radius: 10px;
+  --radius-lg: 16px;
   --gap: 20px;
   --card-padding: 20px;
-  --transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ── Shadows (subtle) ── */
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-card-hover: 0 2px 8px rgba(0, 0, 0, 0.06);
+
+  /* ── Font ── */
+  --font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-family-mono: 'JetBrains Mono', 'SF Mono', Menlo, Monaco, monospace;
 }
 
 * {
@@ -22,9 +52,11 @@
 html,
 body {
   height: 100%;
-  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
-  background: radial-gradient(circle at top left, #1e1b4b, var(--bg));
+  font-family: var(--font-family-base);
+  background: var(--bg);
   color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Layout */
@@ -37,11 +69,10 @@ body {
 }
 
 .sidebar {
-  background: var(--glass);
-  backdrop-filter: blur(8px);
-  border-radius: 12px;
+  background: var(--card);
+  border-radius: var(--radius);
   padding: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.04)
+  border: 1px solid var(--border)
 }
 
 .brand {
@@ -54,12 +85,14 @@ body {
 .logo {
   width: 64px;
   height: 64px;
-  border-radius: 10px;
+  border-radius: var(--radius);
   object-fit: cover;
 }
 
 .brand h1 {
-  font-size: 16px
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text)
 }
 
 .brand .tag {
@@ -70,11 +103,10 @@ body {
 .search input {
   width: 100%;
   padding: 10px;
-  border-radius: 10px;
-  border: none;
-  background: transparent;
-  color: var(--text);
-  border: 1px solid rgba(255, 255, 255, 0.03)
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--color-surface-3);
+  color: var(--text)
 }
 
 /* Main */
@@ -93,10 +125,11 @@ body {
 
 .title {
   font-size: 20px;
-  font-weight: 700
+  font-weight: 700;
+  color: var(--text)
 }
 
-/* Category tabs (new) */
+/* Category tabs */
 .tabs {
   display: flex;
   gap: 10px;
@@ -112,13 +145,14 @@ body {
   border: 1px solid transparent;
   color: var(--muted);
   cursor: pointer;
-  transition: var(--transition)
+  transition: var(--transition);
+  font-weight: 500
 }
 
 .tab.active {
-  background: linear-gradient(90deg, rgba(139, 92, 246, 0.12), rgba(167, 139, 250, 0.08));
-  color: var(--text);
-  border-color: rgba(167, 139, 250, 0.12);
+  background: var(--color-primary-tint);
+  color: var(--accent);
+  border-color: var(--color-primary-border);
   font-weight: 600
 }
 
@@ -131,27 +165,30 @@ body {
 }
 
 .card {
-  background: linear-gradient(180deg, var(--card), rgba(30, 41, 59, 0.92));
-  border-radius: 12px;
+  background: var(--card);
+  border-radius: var(--radius);
   padding: var(--card-padding);
-  border: 1px solid rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
   transition: var(--transition);
   cursor: pointer
 }
 
 .card h4 {
   margin-bottom: 6px;
-  font-size: 15px
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text)
 }
 
 .card p {
   color: var(--muted);
-  font-size: 13px
+  font-size: 13px;
+  line-height: 1.5
 }
 
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5)
+  box-shadow: var(--shadow-card-hover)
 }
 
 /* Calculator view */
@@ -170,10 +207,30 @@ body {
 }
 
 .calc-panel {
-  background: var(--glass);
+  background: var(--card);
   padding: 18px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.03)
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card)
+}
+
+.calc-panel h3 {
+  color: var(--text);
+  font-weight: 700
+}
+
+.formula {
+  color: var(--text);
+  font-size: 13px
+}
+
+.formula strong {
+  font-weight: 600
+}
+
+.formula div {
+  color: var(--muted);
+  font-family: var(--font-family-mono)
 }
 
 form .row {
@@ -187,17 +244,27 @@ form .row {
 label {
   min-width: 140px;
   color: var(--muted);
-  font-weight: 600
+  font-weight: 600;
+  font-size: 13px
 }
 
 input,
 select {
   flex: 1;
   padding: 10px;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.03);
-  background: transparent;
-  color: var(--text)
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--color-surface-3);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 14px
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--color-primary-tint)
 }
 
 .controls {
@@ -208,37 +275,59 @@ select {
 
 .btn {
   padding: 10px 14px;
-  border-radius: 10px;
+  border-radius: var(--radius);
   border: none;
-  background: linear-gradient(90deg, var(--accent), var(--accent-2));
-  color: #04111a;
-  font-weight: 700;
-  cursor: pointer
+  background: var(--accent);
+  color: #FFFFFF;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 14px
+}
+
+.btn:hover {
+  background: var(--accent-2);
 }
 
 .btn-muted {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  color: var(--muted)
+  background: var(--color-surface-3);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-weight: 600
+}
+
+.btn-muted:hover {
+  background: var(--color-surface-4)
 }
 
 .result {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.02));
+  background: var(--color-primary-tint);
   padding: 14px;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.02)
+  border-radius: var(--radius);
+  border: 1px solid var(--color-primary-border)
+}
+
+.result h4 {
+  color: var(--text);
+  font-weight: 600
+}
+
+#resultContent {
+  color: var(--text);
 }
 
 .big {
   font-size: 22px;
-  font-weight: 800;
-  color: var(--accent-2)
+  font-weight: 700;
+  color: var(--accent)
 }
 
 .steps {
   margin-top: 12px;
   color: var(--muted);
-  white-space: pre-wrap
+  white-space: pre-wrap;
+  font-size: 13px;
+  line-height: 1.6
 }
 
 .back {
@@ -246,11 +335,12 @@ select {
   align-items: center;
   gap: 8px;
   padding: 8px 10px;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  background: transparent;
-  color: var(--muted);
-  cursor: pointer
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  cursor: pointer;
+  font-weight: 500
 }
 
 footer {
