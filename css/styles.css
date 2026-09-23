@@ -73,27 +73,52 @@ body {
   margin-bottom: 12px
 }
 
-.search-bar input {
+.search-wrap {
+  display: inline-flex;
+  align-items: center;
+  min-width: 280px;
   width: auto;
-  min-width: 220px;
-  padding: 6px 12px;
-  font-size: 13px;
-  font-weight: 500;
-  border-radius: 8px;
-  border: 1px solid var(--border);
+  max-width: 100%;
+  padding: 0 12px;
   background: var(--color-surface-3);
-  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 999px;
   transition: var(--transition)
 }
 
-.search-bar input:focus {
+.search-wrap:focus-within {
   background: var(--card);
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--color-primary-tint);
-  outline: none
+  box-shadow: 0 0 0 3px var(--color-primary-tint)
 }
 
-.search-bar input::placeholder {
+.search-wrap i {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  color: var(--muted);
+  flex: 0 0 auto
+}
+
+.search-wrap input {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: auto;
+  padding: 8px 0;
+  font-size: 13px;
+  font-weight: 500;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  border-radius: 0
+}
+
+.search-wrap input:focus {
+  outline: none;
+  box-shadow: none
+}
+
+.search-wrap input::placeholder {
   color: var(--muted);
   font-weight: 400
 }
@@ -259,7 +284,7 @@ body {
 
 form .row {
   display: grid;
-  grid-template-columns: 160px 1fr;
+  grid-template-columns: 200px 1fr;
   gap: 12px;
   align-items: center;
   margin-bottom: 12px
